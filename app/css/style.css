@@ -1,0 +1,133 @@
+.agro-header {
+    display: block;
+    border: #b8b4b4;
+    background-color: #b8b4b4;
+    width: 100%;
+    height: 8em;
+}
+
+.agro-logo {
+    z-index: 100;
+    margin-top: 1em;
+    margin-left: 4em;
+    width: 8em;
+    height: 6em;
+}
+
+.nav-tags {
+    display: inline-block;
+    color: grey;
+    margin-top: 2.5em;
+    margin-right: 1em;
+}
+
+.re-circular-image {
+    display: block;
+    position: relative;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 0.5em;
+    height: 7em;
+    width: 7em;
+}
+
+.farmer-box {
+    margin-top: 4em;
+    display: block;
+    border: 1px solid #d3cccc;
+    border-radius: 5px;
+    background-color: white;
+    width: 80%;
+    height: 15.2em;
+}
+
+.filter-box {
+    margin-top: 4em;
+    display: block;
+    border: 1px solid #d3cccc;
+    border-radius: 5px;
+    background-color: white;
+    width: 80%;
+    height: 60em;
+}
+
+.type {
+    display: block;
+    border: #baadad;
+    border-radius: 2px;
+    width: 100%;
+    height: 5em;
+    background-color: white;
+}
+
+.box {
+    border: 1px solid #dd4343;
+    background: #dd4343;
+}
+
+.inner-addon .fa {
+    position: absolute;
+    padding: 20px;
+    pointer-events: none;
+}
+
+.right-addon input {
+    padding-right: 30px;
+    width: 100%;
+    height: 4em;
+}
+
+.align-icon {
+    margin-top: 0.5em;
+}
+
+.filter-style {
+    font-family: serif;
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.section-gap {
+    height: 20px;
+}
+
+.label-style {
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.mark-green {
+    color: green;
+}
+
+.agro-checkbox {
+    width: 20px;
+    height: 20px;
+    background: white;
+}
+
+input[type=radio],
+input[type=checkbox] .agro-checkbox {
+    display: none;
+}
+
+input[type="checkbox"]:checked {
+    background-color: red;
+}
+
+.mark-white {
+    color: white;
+}
+
+.mark-black {
+    color: black;
+}
+
+.show-inline {
+    display: inline-block;
+}
+
+.product-image {
+    width: 10em;
+    height: 10em;
+}

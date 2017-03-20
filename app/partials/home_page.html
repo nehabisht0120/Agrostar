@@ -1,0 +1,138 @@
+<div class="container-fluid">
+    <div class="col-md-12">
+        <div class="agro-header">
+            <div class="row">
+                <div class="col-md-2">
+                    <img class="agro-logo" src="images/download.png">
+                </div>
+                <div class="col-md-7 text-center">
+                    <h4 class="nav-tags"><b>Farmer</b></h4>
+                    <h4 class="nav-tags"><b>Products</b></h4>
+                    <h4 class="nav-tags"><b>Search Order</b></h4>
+                </div>
+                <div class="col-md-3 pull-right">
+                    <p class="show-inline mark-white"><b>John Doe &nbsp</b></p>
+                    <img src="images/profile.png" class="re-circular-image show-inline" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="farmer-box text-center">
+                        <button class="btn type"><h4 class="mark-black"><b>Farmer Profile</b></h4></button>
+                        <button class="btn type box"><h4 class="mark-white"><b>Product</b></h4></button>
+                        <button class="btn type"><h4 class="mark-black"><b>Farmer Logout</b></h4></button>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <br>
+                            <br>
+                            <h3>Nirmal Nilesh Shah</h3>
+                            <h4>Via Suigam-Dhima - Dhima S.O.-</h4>
+                            <h4>Thards - Banaskantha Gujrat-385566</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <br>
+                            <br>
+                            <button class="btn btn-success btn-large" ng-click="vm.showCartProducts()"><i class="fa fa-shopping-cart" class="show-inline"></i>&nbsp &nbsp
+                                <h4 class="show-inline mark-white">  My Cart</h4></button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <br>
+                        <br>
+                        <div class="inner-addon right-addon">
+                            <span class="align-icon">
+                                <i class="fa fa-search"></i>
+                            </span>
+                            <input type="text" class="form-control" ng-model="searchData" placeholder="Search" style="text-align: center;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="filter-box">
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4><b>&nbspFilter</b></h4>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a ng-click="vm.index = {}"><b>Clear All</b></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div ng-repeat=" filter in vm.all_fliters">
+                                            <span class="filter-style"><strong>{{filter.name}}</strong></span>
+                                            <div class="section-gap"></div>
+                                            <div class="label-style" ng-repeat="labels in filter.filters">
+
+                                                <input type="checkbox" class="agro-checkbox" ng-model="vm.index[labels.label]" name="" class="show-inline"><span class="show-inline"><b>&nbsp&nbsp{{labels.label}}</b></span>
+                                                <div class="section-gap"></div>
+                                                <span class="mark-green" ng-repeat="offers in labels.offers" ng-init="vm.getOffersByFilter(offers,vm.offers)">	
+                                       		<b>{{vm.listOfOffers[offers].offerDescription}}</b>
+                                       		<span class="label label-primary">{{vm.listOfOffers[offers].maxNoOfUsages}}</span>	
+											<div class="section-gap"></div>
+                                        </span>
+                                            </div>
+                                            <div class="section-gap"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Sku Code</th>
+                                <th>Product Name</th>
+                                <th>MRP</th>
+                                <th>Selling Price</th>
+                                <th>Total Discount</th>
+                                <th>In Stock</th>
+                                <th>Qty</th>
+                                <th>Add to Cart</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="products in vm.product_data | filter: searchData | orderBy: '-created_at' track by $index ">
+                                <td><img ng-src="{{products.productImages[0].name}}" class="product-image"/></td>
+                                <td>{{products.skuCode}}</td>
+                                <td style="width: 150px;" ">{{products.productName}}</td>
+                                <td>{{products.mrp}}</td>
+                                <td>{{products.sellingPrice}}</td>
+                                <td>{{products.inventory}}</td>
+                                <td>{{products.inventory}}</td>
+                                <td>
+                                    <ul class="nav nav-tabs ">
+                                        <li>
+                                            <button class="btn btn-primary " ng-disabled="products.count < 0 " ng-click="products.count=products.count -1 " >
+                                                < </button>
+                                        </li>
+                                        <li>
+                                            <a class="btn "><span class="mark-black">{{products.count}}</span><a>
+                                        </li>
+                                        <li>
+                                            <button class="btn btn-primary " ng-click="products.count=products.count+1 " > > </button>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <button class="btn btn-success btn-sm " ng-click="vm.addToCart(products)"><i class="fa fa-shopping-cart "></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
