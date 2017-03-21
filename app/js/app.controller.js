@@ -7,17 +7,41 @@
             vm.getOffers = getOffers;
             vm.getOffersByFilter = getOffersByFilter;
             vm.addToCart = addToCart;
+            vm.getProducts = getProducts;
+            vm.showSections = showSections;
 
             vm.listOfOffers = {};
             vm.index = {};
             vm.cartProducts = [];
+            vm.active_section = {};
+            vm.active_section[1] = true;
+            vm.farmerProfile = {
+            	'user_name': 'John Doe',
+            	'business_name': 'John Enterprises',
+            	'contact_number': 0089765434,
+            	'email': 'johndoe@john.com',
+            	'about_us': "I am agri product supplier"
+            }
 
             init();
 
             function init() {
-                getProducts();
                 getFilters();
                 getOffers();
+                getProducts();
+            }
+
+            function showSections(index) {
+                for (var i = 0; i < 3; i++) {
+                    if (i == index) {
+                        vm.active_section[i] = true;
+
+                    } else {
+                        vm.active_section[i] = false;
+
+                    }
+                }
+
             }
 
             function addToCart(cart_product) {
@@ -46,10 +70,9 @@
                 vm.product_data = agrostarService.product_data.responseData.productGists;
                 agrostarService.getProducts()
                     .then(function(data) {
-                    	console.log(data);
+                        console.log(data);
                     })
-                    .catch(function(data) {
-                    });
+                    .catch(function(data) {});
             }
         }])
 }());

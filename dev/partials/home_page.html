@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="col-md-12">
+    <div class="col-md-12" ng-show="!vm.active_section[2]">
         <div class="agro-header">
             <div class="row">
                 <div class="col-md-2">
@@ -18,9 +18,12 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="farmer-box text-center">
-                        <button class="btn type"><h4 class="mark-black"><b>Farmer Profile</b></h4></button>
-                        <button class="btn type box"><h4 class="mark-white"><b>Product</b></h4></button>
-                        <button class="btn type"><h4 class="mark-black"><b>Farmer Logout</b></h4></button>
+                        <button class="btn type" ng-class="{box:vm.active_section[0] == true}" ng-click="vm.showSections(0);vm.getFarmersProfile">
+                            <h4 class="" ng-class="{'mark-white': vm.active_section[0] == true , 'mark-black': vm.active_section[0] == false}"><b>Farmer Profile</b></h4></button>
+                        <button class="btn type" ng-class="{box:vm.active_section[1] == true}" ng-click="vm.showSections(1);vm.getProducts()">
+                            <h4 ng-class="{'mark-white': vm.active_section[1] == true , 'mark-black': vm.active_section[1] == false}"><b>Product</b></h4></button>
+                        <button class="btn type" ng-class="{box:vm.active_section[2] == true}" ng-click="vm.showSections(2);vm.getFarmersProfile">
+                            <h4 ng-class="{'mark-white': vm.active_section[2] == true , 'mark-black': vm.active_section[2] == false}"><b>Farmer Logout</b></h4></button>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -70,14 +73,13 @@
                                             <span class="filter-style"><strong>{{filter.name}}</strong></span>
                                             <div class="section-gap"></div>
                                             <div class="label-style" ng-repeat="labels in filter.filters">
-
                                                 <input type="checkbox" class="agro-checkbox" ng-model="vm.index[labels.label]" name="" class="show-inline"><span class="show-inline"><b>&nbsp&nbsp{{labels.label}}</b></span>
                                                 <div class="section-gap"></div>
                                                 <span class="mark-green" ng-repeat="offers in labels.offers" ng-init="vm.getOffersByFilter(offers,vm.offers)">	
                                        		<b>{{vm.listOfOffers[offers].offerDescription}}</b>
-                                       		<span class="label label-primary">{{vm.listOfOffers[offers].maxNoOfUsages}}</span>	
-											<div class="section-gap"></div>
-                                        </span>
+                                       		<span class="label label-primary">{{vm.listOfOffers[offers].maxNoOfUsages}}</span>
+                                                <div class="section-gap"></div>
+                                                </span>
                                             </div>
                                             <div class="section-gap"></div>
                                         </div>
@@ -87,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9" ng-if="vm.active_section[1]">
                     <table class="table table-condensed">
                         <thead>
                             <tr>
@@ -104,7 +106,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="products in vm.product_data | filter: searchData | orderBy: '-created_at' track by $index ">
-                                <td><img ng-src="{{products.productImages[0].name}}" class="product-image"/></td>
+                                <td><img ng-src="{{products.productImages[0].name}}" class="product-image" /></td>
                                 <td>{{products.skuCode}}</td>
                                 <td style="width: 150px;" ">{{products.productName}}</td>
                                 <td>{{products.mrp}}</td>
@@ -118,7 +120,7 @@
                                                 < </button>
                                         </li>
                                         <li>
-                                            <a class="btn "><span class="mark-black">{{products.count}}</span><a>
+                                            <a class="btn "><span class="mark-black ">{{products.count}}</span><a>
                                         </li>
                                         <li>
                                             <button class="btn btn-primary " ng-click="products.count=products.count+1 " > > </button>
@@ -126,13 +128,42 @@
                                     </ul>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success btn-sm " ng-click="vm.addToCart(products)"><i class="fa fa-shopping-cart "></i></button>
+                                    <button class="btn btn-success btn-sm " ng-click="vm.addToCart(products) "><i class="fa fa-shopping-cart "></i></button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
+                <div class="col-md-9 " ng-if="vm.active_section[0] ">
+					    <div class="row ">
+                                    <div class="col-md-12 ">
+                                        <div class="panel panel-default ">
+                                            <div class="panel-heading "><h3>farmer Profile Details<h3></div>
+                                            <div class="panel-body ">
+                                                <div class="col-md-8 ">
+                                                    <h4>User Name: {{ vm.farmerProfile.user_name }}</h4>
+                                                    <h4>Business Name: {{ vm.farmerProfile.business_name}}</h4>
+                                                    <h4>Contact: {{ vm.farmerProfile.contact_number }}</h4>
+                                                    <h4>Email: {{ vm.farmerProfile.email }}</h4>
+                                                    <h4>About: {{ vm.farmerProfile.about_us }}</h4>
+                                                </div>
+                                                <div class="col-md-4 ">
+                                                    <img src="images/profile.png " height="150 " width="120 " alt="Profile Photo ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                </div>
             </div>
         </div>
+    </div>
+    <div class="col-md-12" ng-show="vm.active_section[2]">
+    	<div class="text-center mark-green">
+    	     <b>
+    	     <b>
+    		<h4><b>You have successfully logged out</b></h4>
+    	</div>
     </div>
 </div>
